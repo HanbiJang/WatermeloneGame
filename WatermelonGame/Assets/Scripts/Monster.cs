@@ -4,38 +4,38 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    //¸ó½ºÅÍ
+    //ëª¬ìŠ¤í„°
     public Text MonsterText;
     public int MonsterHp = 3;
     public int MonsterMaxHp = 3;
 
-    public Image HpImage; //ÀÎ½ºÆåÅÍ ÇÒ´ç
-    public Image RedHitUi; //°ø°İ¹Ş¾ÒÀ» ¶§ »¡°³Áö´Â UI
+    public Image HpImage; //ì¸ìŠ¤í™í„° í• ë‹¹
+    public Image RedHitUi; //ê³µê²©ë°›ì•˜ì„ ë•Œ ë¹¨ê°œì§€ëŠ” UI
 
-    public GameObject WinText; //ÁöÁ¤
+    public GameObject WinText; //ì§€ì •
 
-    //public GameObject MonsterFruit; //±«¹°ÀÇ °ø°İ
+    //public GameObject MonsterFruit; //ê´´ë¬¼ì˜ ê³µê²©
 
-    //Ã¼·Â °¨¼Ò
+    //ì²´ë ¥ ê°ì†Œ
     public void HpDec()
     {
         MonsterHp--;
         MonsterText.text = MonsterHp + " / " + MonsterMaxHp;
 
-        //Ã¼·Â¹Ù ¼­¼­È÷ °¨¼Ò
+        //ì²´ë ¥ë°” ì„œì„œíˆ ê°ì†Œ
         StartCoroutine(DecHpImage());
         StartCoroutine(TurnRed());
     }
 
-    //¸ó½ºÅÍ¸¦ °ø°İÇßÀ» ¶§ È­¸éÀÌ »¡°²°Ô Àá±ñ º¸ÀÌ´Â È¿°ú
+    //ëª¬ìŠ¤í„°ë¥¼ ê³µê²©í–ˆì„ ë•Œ í™”ë©´ì´ ë¹¨ê°›ê²Œ ì ê¹ ë³´ì´ëŠ” íš¨ê³¼
     IEnumerator TurnRed()
     {
-        float redFrame_1 = 1f / 80f; //ÇÑÇÁ·¹ÀÓ¸¶´Ù ´Ş¶óÁö´Â red±â
+        float redFrame_1 = 1f / 80f; //í•œí”„ë ˆì„ë§ˆë‹¤ ë‹¬ë¼ì§€ëŠ” redê¸°
 
-        //20 ÇÁ·¹ÀÓµ¿¾È È­¸éÀÌ ºÓ¾îÁ³´Ù µ¹¾Æ¿È
+        //20 í”„ë ˆì„ë™ì•ˆ í™”ë©´ì´ ë¶‰ì–´ì¡Œë‹¤ ëŒì•„ì˜´
         for (int frameCnt = 0; frameCnt < 20; frameCnt++)
         {
-            //È­¸é »¡°³Áö´Â È¿°ú
+            //í™”ë©´ ë¹¨ê°œì§€ëŠ” íš¨ê³¼
             Color col = new Color(RedHitUi.color.r, RedHitUi.color.g, RedHitUi.color.b, RedHitUi.color.a + redFrame_1);
             RedHitUi.color = col;
             yield return new WaitForSeconds(0.01f);
@@ -43,12 +43,12 @@ public class Monster : MonoBehaviour
 
         for (int frameCnt = 0; frameCnt < 20; frameCnt++)
         {
-            //È­¸é Åõ¸íÇØÁö´Â È¿°ú
+            //í™”ë©´ íˆ¬ëª…í•´ì§€ëŠ” íš¨ê³¼
             Color col = new Color(RedHitUi.color.r, RedHitUi.color.g, RedHitUi.color.b, RedHitUi.color.a - redFrame_1);
             RedHitUi.color = col;
             yield return new WaitForSeconds(0.01f);
         }
-        //Åõ¸íÇÏ°Ô ÃÊ±âÈ­
+        //íˆ¬ëª…í•˜ê²Œ ì´ˆê¸°í™”
         Color col_transf = new Color(RedHitUi.color.r, RedHitUi.color.g, RedHitUi.color.b, 0f);
         RedHitUi.color = col_transf;
 
@@ -57,9 +57,9 @@ public class Monster : MonoBehaviour
 
     IEnumerator DecHpImage()
     {
-        float HpBar_1 = 1f / MonsterMaxHp; //hp¹Ù 1Ä­ ±æÀÌ
+        float HpBar_1 = 1f / MonsterMaxHp; //hpë°” 1ì¹¸ ê¸¸ì´
 
-        //20 ÇÁ·¹ÀÓµ¿¾È Ã¼·Â¹Ù°¡ HPBar_1 / 20¸¸Å­ °¨¼Ò
+        //20 í”„ë ˆì„ë™ì•ˆ ì²´ë ¥ë°”ê°€ HPBar_1 / 20ë§Œí¼ ê°ì†Œ
         for (int frameCnt = 0; frameCnt < 20; frameCnt++)
         {
             HpImage.fillAmount -= HpBar_1 / 20f;
@@ -69,7 +69,7 @@ public class Monster : MonoBehaviour
         yield return null;
     }
 
-    //2ºĞ¿¡ ÇÑ¹ø¾¿ ·£´ıÇÑ Àå¼Ò¿¡ ¾È ¾ø¾îÁö´Â ´«¾Ë ¼ÒÈ¯
+
     private void Update()
     {
         if (MonsterHp <= 0) 
